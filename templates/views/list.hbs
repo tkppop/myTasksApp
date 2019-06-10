@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+        <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Task App</title>
+    <link rel="icon" href="/img/todolistgodo.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    {{>header}}
+    
+    <div class="modal fade" id="addTaskForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Add New Task</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="addNewTaskForm">
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        <input type="text" id="form34" class="form-control validate" autocomplete="off" required>
+                        <label data-error="wrong" data-success="right" for="form34">Task Name</label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" name="taskStatus" id="option1" value="pending" autocomplete="off" checked > Pending
+                            </label>
+                            <label class="form-check-label">
+                                <input type="radio" name="taskStatus" id="option2" value="completed" autocomplete="off"> Completed
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="md-form">
+                        <i class="fas fa-pencil prefix grey-text"></i>
+                        <textarea type="text" id="form8" class="md-textarea form-control" rows="4" autocomplete="off"></textarea>
+                        <label data-error="wrong" data-success="right" for="form8">Task Description</label>
+                    </div>
+                </div>
+
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="submit" id="add_task_modal" class="btn btn-primary">Add New<i class="fas fa-paper-plane-o ml-1"></i></button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+        
+
+    <div class="text-center">
+        <a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#addTaskForm"> Add Task</a>
+    </div>
+    
+
+    <div>
+        <div>
+            <p></p>
+            <div class="card-columns">
+                <div id="task_container"> </div>
+            </div>
+            {{!-- The forward-slash before the variable will send it to the client without parsing it out  --}}
+
+            <script id="task_list_template" type="text/x-handlebars-template">
+                \{{#each tasks}}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">\{{taskName}}</h5>
+                            <p class="badge badge-pill badge-secondary"> \{{taskStatus}}</p>
+                            <div>
+                                <a href="#" class="card-link" data-taskid="\{{taskID}}" onclick="completeTask(this, this.getAttribute('data-taskid'))">Complete</a>
+                                <a href="#" class="card-link" data-taskid="\{{taskID}}" onclick="deleteTask(this, this.getAttribute('data-taskid'))">Delete</a>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                                <small class="text-muted">\{{lastUpdated}}</small>
+                        </div>
+                    </div>
+                \{{/each}}
+            </script>
+        </div>
+    </div>
+
+    {{>footer}}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    
+    
+    <script src="/js/list.js"></script>
+</body>
+
+</html>
