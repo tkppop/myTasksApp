@@ -10,8 +10,8 @@ $loginForm.addEventListener('submit', (e) => {
     //disable button using dom manipulation
     $loginFormButton.setAttribute('disabled', 'disabled')
     // $loginFormButton.removeAttribute('disabled')
-    console.log('name', $loginFormUser.value)
-    console.log('key', $loginFormkey.value)
+    // console.log('name', $loginFormUser.value)
+    // console.log('key', $loginFormkey.value)
 
     const url = '/users/login' 
     fetch (url, {
