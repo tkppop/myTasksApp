@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 })
 
 $addNewTaskForm.addEventListener('submit', (e) => {
+    //This prevents refresh of the entire page when I submit the form.
     e.preventDefault()
     // console.log("Submitted from modal")
     // console.log($newTaskName.value)
@@ -33,7 +34,13 @@ $addNewTaskForm.addEventListener('submit', (e) => {
         taskStatus = true
     }
     addNewTask(taskName, taskStatus)
-    $('#addTaskForm').modal('toggle')
+    //$('#addTaskForm').modal('toggle')
+    //1. Switching to 'hide' rather than 'toggle',
+    //otherwise form can also be submitted without the modal being visible 
+    //when the submit event is fired
+    $('#addTaskForm').modal('hide')
+    //Adding reset to clear input fields in the modal
+    $addNewTaskForm.reset()
 })
 
 const getMyTasks = () => {
